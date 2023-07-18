@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import TodoContainer from './components/TodoContainer';
+import Counter from './components/Counter';
+import Async from './components/Async';
+import { MantineProvider } from '@mantine/core';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Spisok from './components/Spisok';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MantineProvider withGlobalStyles withNormalizeCSS>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<TodoContainer />} />
+            <Route path="/counter" element={<Counter />} />
+            <Route path="/spisok" element={<Spisok />} />
+            <Route path="/async" element={<Async />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </MantineProvider>
   );
 }
 
